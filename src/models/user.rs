@@ -33,3 +33,11 @@ pub struct User {
     pub status: Status,
     // Additional fields can be added as needed.
 }
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Claims {
+    pub user_id: Uuid,
+    pub role: i32,
+    pub status: i32,
+    pub exp: u64,
+}
