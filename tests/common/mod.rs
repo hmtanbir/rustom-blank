@@ -54,8 +54,7 @@ pub async fn setup_app() -> (Router, PgPool) {
     });
 
     let redis_url = std::env::var("REDIS_URL").unwrap_or_else(|_| {
-        let pass = std::env::var("REDIS_PASSWORD")
-    .unwrap_or_else(|_| "default_password".to_string());
+        let pass = std::env::var("REDIS_PASSWORD").unwrap_or_else(|_| "password".to_string());
         let host = std::env::var("REDIS_HOST").unwrap_or_else(|_| "127.0.0.1".to_string());
         let port = std::env::var("REDIS_PORT").unwrap_or_else(|_| "6379".to_string());
         let db = std::env::var("REDIS_DB").unwrap_or_else(|_| "0".to_string());

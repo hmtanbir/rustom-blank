@@ -1,4 +1,4 @@
-# Rustom
+# Rustom (Blank Boilerplate)
 
 A production-ready, highly scalable, and concurrent Rust API boilerplate template.
 
