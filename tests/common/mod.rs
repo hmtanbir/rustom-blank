@@ -85,6 +85,8 @@ pub async fn setup_app() -> (Router, PgPool) {
             .unwrap_or_else(|_| "3600".to_string())
             .parse()
             .unwrap_or(3600),
+        domain_name: std::env::var("DOMAIN_NAME")
+            .unwrap_or_else(|_| "http://localhost:3000".to_string()),
     };
 
     let db = rustom::infrastructure::init_db(&config)
