@@ -15,6 +15,14 @@ async fn main() -> anyhow::Result<()> {
     let config = config::AppConfig::from_env()
         .map_err(|e| anyhow::anyhow!("Configuration loading failure: {}", e))?;
 
+    let app_env = std::env::var("APP_ENV").unwrap_or_else(|_| "development".to_string());
+    if app_env == "production" {
+        let gateway_key = std::env::var("API_GATEWAY_KEY").unwrap_or_default();
+        if gateway_key.trim().is_empty() {
+            anyhow::bail!("API_GATEWAY_KEY must be set in production environment");
+        }
+    }
+
     // 2. Initialize logging & tracing subscriber
     tracing_subscriber::fmt()
         .with_env_filter(
