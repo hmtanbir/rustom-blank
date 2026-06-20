@@ -17,9 +17,10 @@ pub fn create_router(state: AppState) -> Router {
         for domain in state.config.domain_name.split(',') {
             let trimmed = domain.trim();
             if !trimmed.is_empty()
-                && let Ok(origin) = trimmed.parse::<axum::http::HeaderValue>() {
-                    allowed_origins.push(origin);
-                }
+                && let Ok(origin) = trimmed.parse::<axum::http::HeaderValue>()
+            {
+                allowed_origins.push(origin);
+            }
         }
         CorsLayer::new()
             .allow_origin(allowed_origins)
